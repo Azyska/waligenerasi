@@ -29,7 +29,7 @@
 }
 
 /* ==========================================================================
-   2. RESET & BACKGROUND HIDUP (CERAH & SEGAR)
+   2. RESET & BACKGROUND GRADASI TOTAL (HIDUP & CERAH)
    ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -50,7 +50,7 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 
-  /* Background Cerah, Berpendar & Menyatu Alami */
+  /* Gradasi Latar Belakang Segar & Alami */
   background-color: #f7faf8;
   background-image: 
     radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.15) 0px, transparent 45%),
@@ -107,8 +107,6 @@ img {
   justify-content: space-between;
   align-items: center;
   padding: 12px 28px;
-  
-  /* Efek Glassmorphism Kapsul Tebal */
   background: rgba(255, 255, 255, 0.65);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -232,7 +230,7 @@ img {
 }
 
 /* ==========================================================================
-   5. HERO SECTION
+   5. HERO SECTION (OVERLAY TIPIS)
    ========================================================================== */
 .hero {
   padding: 24px 0 36px;
@@ -240,12 +238,12 @@ img {
 
 .hero__card {
   position: relative;
-  min-height: 520px;
+  min-height: 500px;
   border-radius: var(--radius-lg);
   overflow: hidden;
   display: flex;
   align-items: center;
-  box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.15);
+  box-shadow: 0 10px 30px -6px rgba(15, 23, 42, 0.1);
 }
 
 .hero__image {
@@ -259,19 +257,25 @@ img {
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.45) 100%);
+  background: linear-gradient(
+    90deg, 
+    rgba(14, 26, 20, 0.55) 0%, 
+    rgba(14, 26, 20, 0.25) 50%, 
+    rgba(14, 26, 20, 0.05) 100%
+  );
 }
 
 .hero__content {
   position: relative;
   z-index: 2;
-  padding: 56px;
-  max-width: 680px;
+  padding: 48px 56px;
+  max-width: 660px;
   color: var(--t-light);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 .hero__title {
-  font-size: clamp(32px, 4.2vw, 42px);
+  font-size: clamp(30px, 4vw, 42px);
   line-height: 1.18;
   font-weight: 500;
   letter-spacing: -0.02em;
@@ -283,16 +287,18 @@ img {
 }
 
 .hero__tagline {
-  color: #34d399;
-  font-size: 18px;
+  color: #86efac;
+  font-size: 17px;
   font-weight: 700;
   margin-bottom: 14px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 .hero__desc {
-  font-size: 16px;
+  font-size: 15.5px;
   line-height: 1.65;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 /* ==========================================================================
@@ -303,7 +309,7 @@ img {
 }
 
 /* ==========================================================================
-   7. SECTION TENTANG KAMI (BENTO GLASS)
+   7. SECTION TENTANG KAMI (BENTO GRID MODULAR)
    ========================================================================== */
 .about {
   padding: 84px 0 92px;
@@ -463,7 +469,7 @@ img {
 }
 
 /* ==========================================================================
-   8. DAFTAR UNIT PENDIDIKAN (KARTU SEJAJAR & GLASS)
+   8. DAFTAR UNIT PENDIDIKAN (FOTO SEJAJAR & ROUNDED)
    ========================================================================== */
 .programs-overview {
   padding: 92px 0 104px;
@@ -521,14 +527,15 @@ img {
 
 .program-card__media {
   margin-top: auto;
+  padding-top: 14px;
   display: flex;
   justify-content: center;
 }
 
 .program-card__thumb {
   width: 100%;
-  height: 175px;
-  border-radius: var(--radius-sm);
+  height: 180px;
+  border-radius: 14px;
   object-fit: cover;
   transition: transform 0.25s ease;
 }
@@ -719,7 +726,7 @@ img {
 }
 
 /* ==========================================================================
-   12. MEDIA QUERIES
+   12. MEDIA QUERIES (RESPONSIF MOBILE & TABLET)
    ========================================================================== */
 @media (max-width: 1024px) {
   .programs-grid {
