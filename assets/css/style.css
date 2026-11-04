@@ -1,0 +1,771 @@
+/* ==========================================================================
+   1. RESET & VARIABLE DESIGN SYSTEM
+   ========================================================================== */
+:root {
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --color-surface: #ffffff;
+  --color-surface-subtle: #f8fafc;
+  --color-text-main: #0f172a;
+  --color-text-muted: #475569;
+  --color-border: #e2e8f0;
+  --color-border-hover: #cbd5e1;
+  --color-accent: #047857;
+  --color-accent-subtle: #ecfdf5;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-family);
+  color: var(--color-text-main);
+  background-color: var(--color-surface);
+}
+
+body {
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* ==========================================================================
+   2. TYPOGRAPHY & BUTTONS
+   ========================================================================== */
+.eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-size: 38px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  color: var(--color-text-main);
+}
+
+.section-lead {
+  font-size: 16.5px;
+  color: var(--color-text-muted);
+  max-width: 720px;
+  margin: 12px auto 0;
+  line-height: 1.6;
+}
+
+.btn-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.btn--primary {
+  background-color: var(--color-text-main);
+  color: #ffffff;
+  border: 1px solid transparent;
+}
+
+.btn--primary:hover {
+  background-color: #1e293b;
+  transform: translateY(-2px);
+}
+
+.btn--secondary {
+  background-color: transparent;
+  color: var(--color-text-main);
+  border: 1px solid var(--color-border);
+}
+
+.btn--secondary:hover {
+  border-color: #94a3b8;
+  background-color: var(--color-surface-subtle);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   3. HEADER & NAVBAR
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--color-border);
+  height: 72px;
+  display: flex;
+  align-items: center;
+  z-index: 100;
+}
+
+.site-header__wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand__logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.brand__name {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.site-nav {
+  display: flex;
+  gap: 28px;
+}
+
+.site-nav__link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.site-nav__link:hover {
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   4. HERO SECTION
+   ========================================================================== */
+.hero {
+  padding: 24px 0 32px;
+}
+
+.hero__card {
+  position: relative;
+  min-height: 480px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--color-border);
+}
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.45) 100%);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  padding: 48px;
+  max-width: 680px;
+  color: #ffffff;
+}
+
+.hero__title {
+  font-size: 40px;
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.hero__title strong {
+  font-weight: 800;
+}
+
+.hero__tagline {
+  color: #6ee7b7;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.hero__desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ==========================================================================
+   5. JARINGAN RESMI
+   ========================================================================== */
+.network-cta {
+  padding: 64px 0 48px;
+}
+
+/* ==========================================================================
+   6. SECTION TENTANG KAMI (BENTO GRID TERSTRUKTUR)
+   ========================================================================== */
+.about {
+  padding: 88px 0 96px;
+  background-color: var(--color-surface-subtle);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.about__header {
+  margin-bottom: 48px;
+}
+
+/* Baris Atas: Narasi & Sorotan */
+.about__hero-row {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 32px;
+  align-items: stretch;
+  margin-bottom: 32px;
+}
+
+.about__narrative {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about__subtitle {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+  margin-bottom: 14px;
+}
+
+.about__desc {
+  color: var(--color-text-muted);
+  font-size: 15.5px;
+  line-height: 1.7;
+}
+
+.about__vision-card {
+  background: #0f172a;
+  border-radius: var(--radius-md);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #ffffff;
+}
+
+.vision-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #34d399;
+}
+
+.vision-quote {
+  font-size: 16px;
+  line-height: 1.6;
+  font-style: normal;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 20px;
+}
+
+/* Baris Tengah: 3 Kartu Pilar */
+.about__pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.pillar-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.pillar-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-border-hover);
+}
+
+.pillar-card__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-subtle);
+  color: var(--color-accent);
+  font-size: 14px;
+  font-weight: 800;
+  font-family: monospace;
+}
+
+.pillar-card__title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-text-main);
+}
+
+.pillar-card__desc {
+  font-size: 14px;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+/* Baris Bawah: Strip Statistik */
+.about__stats-strip {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 12px 0;
+}
+
+.stat-strip-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px 20px;
+  position: relative;
+}
+
+.stat-strip-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 25%;
+  height: 50%;
+  width: 1px;
+  background-color: var(--color-border);
+}
+
+.stat-strip-item__val {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+  line-height: 1.1;
+}
+
+.stat-strip-item__lbl {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-top: 8px;
+}
+
+/* ==========================================================================
+   7. DAFTAR UNIT PENDIDIKAN (MODULAR SIAP DATABASE)
+   ========================================================================== */
+.programs-overview {
+  padding: 80px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.section-head {
+  margin-bottom: 40px;
+}
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.program-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 560px;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.program-card:hover {
+  transform: translateY(-4px);
+  border-color: #94a3b8;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+}
+
+.program-card__badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-accent);
+  background-color: var(--color-accent-subtle);
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.program-card__title {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 8px;
+  color: var(--color-text-main);
+}
+
+.program-card__text {
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+.program-card__media {
+  margin: 16px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.program-card__thumb {
+  width: 100%;
+  max-width: 190px;
+  height: 170px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  object-fit: cover;
+}
+
+.program-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.meta-pill {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  background-color: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.program-card__footer {
+  border-top: 1px solid var(--color-border);
+  padding-top: 12px;
+}
+
+.inline-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.inline-link:hover {
+  gap: 12px;
+}
+
+.arrow-icon {
+  width: 16px;
+  height: 12px;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+/* ==========================================================================
+   8. RINCIAN PROGRAM (Z-PATTERN)
+   ========================================================================== */
+.programs-detail {
+  padding: 32px 0 80px;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  padding: 56px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-row--reverse {
+  flex-direction: row-reverse;
+}
+
+.detail-row__media,
+.detail-row__content {
+  flex: 1;
+}
+
+.detail-row__img {
+  width: 100%;
+  height: 360px;
+  border-radius: var(--radius-lg);
+  object-fit: cover;
+  border: 1px solid var(--color-border);
+}
+
+.detail-row__title {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+
+.detail-row__desc {
+  font-size: 15px;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   9. LOKASI & PETA
+   ========================================================================== */
+.location {
+  padding: 80px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.location__wrap {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+}
+
+.location__info {
+  flex: 1;
+}
+
+.location__address-card {
+  margin: 20px 0 24px;
+}
+
+.location__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+  margin-bottom: 4px;
+}
+
+.location__address {
+  font-style: normal;
+  font-size: 16px;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+  max-width: 440px;
+}
+
+.location__frame {
+  flex: 1;
+  height: 380px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.location__frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ==========================================================================
+   10. FOOTER
+   ========================================================================== */
+.site-footer {
+  border-top: 1px solid var(--color-border);
+  padding: 64px 0 48px;
+  background-color: var(--color-surface-subtle);
+}
+
+.site-footer__wrap {
+  display: flex;
+  justify-content: space-between;
+  gap: 56px;
+}
+
+.site-footer__main {
+  max-width: 340px;
+}
+
+.site-footer__about {
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+.site-footer__nav-grid {
+  display: flex;
+  gap: 56px;
+}
+
+.footer-col__title {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--color-text-main);
+}
+
+.footer-col li {
+  margin-bottom: 10px;
+}
+
+.footer-col a {
+  font-size: 13.5px;
+  color: var(--color-text-muted);
+}
+
+.footer-col a:hover {
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
+   11. RESPONSIF (BREAKPOINTS)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .programs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about__hero-row,
+  .about__pillars-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about__stats-strip {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .stat-strip-item:not(:last-child)::after {
+    display: none;
+  }
+
+  .location__wrap,
+  .detail-row,
+  .detail-row--reverse {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .detail-row__media,
+  .detail-row__content,
+  .location__frame {
+    width: 100%;
+  }
+
+  .location__frame {
+    height: 320px;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-nav {
+    display: none;
+  }
+
+  .hero__title,
+  .section-title {
+    font-size: 28px;
+  }
+
+  .programs-grid,
+  .about__stats-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer__wrap {
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .site-footer__nav-grid {
+    flex-wrap: wrap;
+    gap: 32px;
+  }
+}
