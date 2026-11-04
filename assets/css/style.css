@@ -1,21 +1,36 @@
 /* ==========================================================================
-   1. RESET & VARIABLE DESIGN SYSTEM
+   1. SISTEM DESAIN & VARIABEL WARNA
    ========================================================================== */
 :root {
-  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --color-surface: #ffffff;
-  --color-surface-subtle: #f8fafc;
-  --color-text-main: #0f172a;
-  --color-text-muted: #475569;
-  --color-border: #e2e8f0;
-  --color-border-hover: #cbd5e1;
-  --color-accent: #047857;
-  --color-accent-subtle: #ecfdf5;
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
+  --font-base: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Nuansa Hijau & Aksen Segar */
+  --c-primary: #0f172a;
+  --c-brand: #059669;
+  --c-brand-light: #10b981;
+  --c-brand-soft: rgba(5, 150, 105, 0.1);
+  
+  /* Warna Teks */
+  --t-heading: #0f172a;
+  --t-body: #475569;
+  --t-muted: #64748b;
+  --t-light: #ffffff;
+  
+  /* Permukaan Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.8);
+  --glass-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.08);
+  
+  /* Kelengkungan (Radius) */
+  --radius-sm: 10px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-pill: 9999px;
 }
 
+/* ==========================================================================
+   2. RESET & BACKGROUND HIDUP (CERAH & SEGAR)
+   ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -24,20 +39,33 @@
 
 html {
   scroll-behavior: smooth;
-  font-family: var(--font-family);
-  color: var(--color-text-main);
-  background-color: var(--color-surface);
+  font-family: var(--font-base);
+  color: var(--t-heading);
+  font-size: 16px;
 }
 
 body {
+  width: 100%;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+
+  /* Background Cerah, Berpendar & Menyatu Alami */
+  background-color: #f7faf8;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.15) 0px, transparent 45%),
+    radial-gradient(at 100% 10%, rgba(5, 150, 105, 0.12) 0px, transparent 40%),
+    radial-gradient(at 20% 50%, rgba(52, 211, 153, 0.1) 0px, transparent 50%),
+    radial-gradient(at 90% 70%, rgba(16, 185, 129, 0.14) 0px, transparent 45%),
+    radial-gradient(at 50% 100%, rgba(5, 150, 105, 0.12) 0px, transparent 50%),
+    linear-gradient(180deg, #f9fbf9 0%, #f1f6f2 50%, #f6faf7 100%);
+  background-attachment: fixed;
 }
 
 a {
-  text-decoration: none;
   color: inherit;
-  transition: all 0.2s ease;
+  text-decoration: none;
+  transition: all 0.25s ease;
 }
 
 ul {
@@ -62,30 +90,96 @@ img {
 }
 
 /* ==========================================================================
-   2. TYPOGRAPHY & BUTTONS
+   3. FLOATING GLASSMORPHISM NAVBAR (ROUNDED PILL)
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 20px;
+  z-index: 1000;
+  width: 100%;
+  max-width: 1200px;
+  margin: 16px auto 0 auto;
+  padding: 0 20px;
+}
+
+.site-header__wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 28px;
+  
+  /* Efek Glassmorphism Kapsul Tebal */
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand__logo {
+  width: 36px;
+  height: 36px;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  object-fit: contain;
+}
+
+.brand__name {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--t-heading);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.site-nav__link {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--t-body);
+}
+
+.site-nav__link:hover {
+  color: var(--c-brand);
+}
+
+/* ==========================================================================
+   4. TIPOGRAFI & TOMBOL
    ========================================================================== */
 .eyebrow {
   display: inline-block;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--color-accent);
+  letter-spacing: 0.12em;
+  color: var(--c-brand);
   margin-bottom: 8px;
 }
 
 .section-title {
-  font-size: 38px;
+  font-size: clamp(30px, 4vw, 38px);
   font-weight: 800;
   letter-spacing: -0.025em;
-  line-height: 1.2;
-  color: var(--color-text-main);
+  line-height: 1.25;
+  color: var(--t-heading);
 }
 
 .section-lead {
   font-size: 16.5px;
-  color: var(--color-text-muted);
-  max-width: 720px;
+  color: var(--t-muted);
+  max-width: 700px;
   margin: 12px auto 0;
   line-height: 1.6;
 }
@@ -93,8 +187,9 @@ img {
 .btn-row {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-top: 28px;
+  align-items: center;
+  gap: 14px;
+  margin-top: 32px;
   flex-wrap: wrap;
 }
 
@@ -102,107 +197,55 @@ img {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 24px;
-  border-radius: var(--radius-sm);
+  padding: 13px 28px;
+  border-radius: var(--radius-pill);
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+  transition: all 0.25s ease;
 }
 
 .btn--primary {
-  background-color: var(--color-text-main);
-  color: #ffffff;
-  border: 1px solid transparent;
+  background-color: var(--c-primary);
+  color: var(--t-light);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.15);
 }
 
 .btn--primary:hover {
   background-color: #1e293b;
   transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.2);
 }
 
 .btn--secondary {
-  background-color: transparent;
-  color: var(--color-text-main);
-  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--t-heading);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
 }
 
 .btn--secondary:hover {
-  border-color: #94a3b8;
-  background-color: var(--color-surface-subtle);
+  background: #ffffff;
   transform: translateY(-2px);
 }
 
 /* ==========================================================================
-   3. HEADER & NAVBAR
-   ========================================================================== */
-.site-header {
-  position: sticky;
-  top: 0;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--color-border);
-  height: 72px;
-  display: flex;
-  align-items: center;
-  z-index: 100;
-}
-
-.site-header__wrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.brand__logo {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  object-fit: cover;
-}
-
-.brand__name {
-  font-size: 19px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-}
-
-.site-nav {
-  display: flex;
-  gap: 28px;
-}
-
-.site-nav__link {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-text-muted);
-}
-
-.site-nav__link:hover {
-  color: var(--color-accent);
-}
-
-/* ==========================================================================
-   4. HERO SECTION
+   5. HERO SECTION
    ========================================================================== */
 .hero {
-  padding: 24px 0 32px;
+  padding: 24px 0 36px;
 }
 
 .hero__card {
   position: relative;
-  min-height: 480px;
+  min-height: 520px;
   border-radius: var(--radius-lg);
   overflow: hidden;
   display: flex;
   align-items: center;
-  border: 1px solid var(--color-border);
+  box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.15);
 }
 
 .hero__image {
@@ -222,14 +265,14 @@ img {
 .hero__content {
   position: relative;
   z-index: 2;
-  padding: 48px;
+  padding: 56px;
   max-width: 680px;
-  color: #ffffff;
+  color: var(--t-light);
 }
 
 .hero__title {
-  font-size: 40px;
-  line-height: 1.15;
+  font-size: clamp(32px, 4.2vw, 42px);
+  line-height: 1.18;
   font-weight: 500;
   letter-spacing: -0.02em;
   margin-bottom: 12px;
@@ -240,68 +283,67 @@ img {
 }
 
 .hero__tagline {
-  color: #6ee7b7;
+  color: #34d399;
   font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 12px;
+  font-weight: 700;
+  margin-bottom: 14px;
 }
 
 .hero__desc {
-  font-size: 15px;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.85);
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* ==========================================================================
-   5. JARINGAN RESMI
+   6. JARINGAN RESMI
    ========================================================================== */
 .network-cta {
-  padding: 64px 0 48px;
+  padding: 72px 0 54px;
 }
 
 /* ==========================================================================
-   6. SECTION TENTANG KAMI (BENTO GRID TERSTRUKTUR)
+   7. SECTION TENTANG KAMI (BENTO GLASS)
    ========================================================================== */
 .about {
-  padding: 88px 0 96px;
-  background-color: var(--color-surface-subtle);
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
+  padding: 84px 0 92px;
 }
 
 .about__header {
-  margin-bottom: 48px;
+  margin-bottom: 44px;
 }
 
-/* Baris Atas: Narasi & Sorotan */
 .about__hero-row {
   display: grid;
   grid-template-columns: 1.6fr 1fr;
-  gap: 32px;
+  gap: 24px;
   align-items: stretch;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .about__narrative {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
-  padding: 36px 40px;
+  padding: 38px 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  box-shadow: var(--glass-shadow);
 }
 
 .about__subtitle {
   font-size: 24px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--color-text-main);
-  margin-bottom: 14px;
+  color: var(--t-heading);
+  margin-bottom: 12px;
 }
 
 .about__desc {
-  color: var(--color-text-muted);
+  color: var(--t-body);
   font-size: 15.5px;
   line-height: 1.7;
 }
@@ -309,90 +351,90 @@ img {
 .about__vision-card {
   background: #0f172a;
   border-radius: var(--radius-md);
-  padding: 36px 32px;
+  padding: 38px 34px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: #ffffff;
+  color: var(--t-light);
+  box-shadow: var(--glass-shadow);
 }
 
 .vision-tag {
   display: inline-block;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   color: #34d399;
 }
 
 .vision-quote {
   font-size: 16px;
-  line-height: 1.6;
-  font-style: normal;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
-  margin-top: 20px;
+  line-height: 1.65;
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.92);
+  margin-top: 18px;
 }
 
-/* Baris Tengah: 3 Kartu Pilar */
 .about__pillars-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  margin-bottom: 32px;
+  margin-bottom: 24px;
 }
 
 .pillar-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
   padding: 32px 28px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .pillar-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--color-border-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
 }
 
 .pillar-card__badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: var(--radius-sm);
-  background: var(--color-accent-subtle);
-  color: var(--color-accent);
-  font-size: 14px;
+  font-size: 22px;
   font-weight: 800;
-  font-family: monospace;
+  color: var(--c-brand);
+  font-feature-settings: "tnum";
+  margin-bottom: 8px;
+  line-height: 1;
 }
 
 .pillar-card__title {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.01em;
-  color: var(--color-text-main);
+  color: var(--t-heading);
+  margin-bottom: 8px;
 }
 
 .pillar-card__desc {
   font-size: 14px;
-  color: var(--color-text-muted);
+  color: var(--t-body);
   line-height: 1.6;
 }
 
-/* Baris Bawah: Strip Statistik */
 .about__stats-strip {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 12px 0;
+  box-shadow: var(--glass-shadow);
 }
 
 .stat-strip-item {
@@ -402,170 +444,141 @@ img {
   justify-content: center;
   text-align: center;
   padding: 24px 20px;
-  position: relative;
-}
-
-.stat-strip-item:not(:last-child)::after {
-  content: "";
-  position: absolute;
-  right: 0;
-  top: 25%;
-  height: 50%;
-  width: 1px;
-  background-color: var(--color-border);
 }
 
 .stat-strip-item__val {
   font-size: 34px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--color-text-main);
+  color: var(--c-primary);
   line-height: 1.1;
+  font-feature-settings: "tnum";
 }
 
 .stat-strip-item__lbl {
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 600;
-  color: var(--color-text-muted);
-  margin-top: 8px;
+  color: var(--t-muted);
+  margin-top: 6px;
 }
 
 /* ==========================================================================
-   7. DAFTAR UNIT PENDIDIKAN (MODULAR SIAP DATABASE)
+   8. DAFTAR UNIT PENDIDIKAN (KARTU SEJAJAR & GLASS)
    ========================================================================== */
 .programs-overview {
-  padding: 80px 0;
-  border-top: 1px solid var(--color-border);
+  padding: 92px 0 104px;
 }
 
 .section-head {
-  margin-bottom: 40px;
+  margin-bottom: 46px;
 }
 
 .programs-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 22px;
+  align-items: stretch;
 }
 
 .program-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
+  background: var(--glass-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
-  padding: 20px;
+  padding: 28px 22px 22px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 560px;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  gap: 20px;
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .program-card:hover {
-  transform: translateY(-4px);
-  border-color: #94a3b8;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 42px -10px rgba(15, 23, 42, 0.12);
 }
 
-.program-card__badge {
-  display: inline-block;
-  align-self: flex-start;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--color-accent);
-  background-color: var(--color-accent-subtle);
-  padding: 3px 8px;
-  border-radius: 4px;
-  margin-bottom: 12px;
+.program-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
 }
 
 .program-card__title {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.35;
-  margin-bottom: 8px;
-  color: var(--color-text-main);
+  color: var(--t-heading);
 }
 
 .program-card__text {
   font-size: 13.5px;
-  color: var(--color-text-muted);
+  color: var(--t-body);
   line-height: 1.55;
 }
 
 .program-card__media {
-  margin: 16px 0;
+  margin-top: auto;
   display: flex;
   justify-content: center;
 }
 
 .program-card__thumb {
   width: 100%;
-  max-width: 190px;
-  height: 170px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
+  height: 175px;
+  border-radius: var(--radius-sm);
   object-fit: cover;
+  transition: transform 0.25s ease;
 }
 
-.program-card__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 16px;
-}
-
-.meta-pill {
-  font-size: 11.5px;
-  font-weight: 500;
-  color: var(--color-text-muted);
-  background-color: var(--color-surface-subtle);
-  border: 1px solid var(--color-border);
-  padding: 3px 8px;
-  border-radius: 4px;
+.program-card:hover .program-card__thumb {
+  transform: scale(1.02);
 }
 
 .program-card__footer {
-  border-top: 1px solid var(--color-border);
-  padding-top: 12px;
+  padding-top: 6px;
 }
 
 .inline-link {
   font-size: 13px;
-  font-weight: 600;
-  color: var(--color-accent);
+  font-weight: 700;
+  color: var(--c-brand);
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  transition: gap 0.2s ease;
+}
+
+.arrow-icon {
+  width: 14px;
+  height: 10px;
+  opacity: 0.85;
+  transition: transform 0.2s ease;
 }
 
 .inline-link:hover {
   gap: 12px;
+  color: #047857;
 }
 
-.arrow-icon {
-  width: 16px;
-  height: 12px;
-  opacity: 0.7;
-  transition: transform 0.2s ease;
+.inline-link:hover .arrow-icon {
+  transform: translateX(4px);
 }
 
 /* ==========================================================================
-   8. RINCIAN PROGRAM (Z-PATTERN)
+   9. DETAIL PROGRAM (Z-PATTERN)
    ========================================================================== */
 .programs-detail {
-  padding: 32px 0 80px;
+  padding: 36px 0 80px;
 }
 
 .detail-row {
   display: flex;
   align-items: center;
-  gap: 56px;
-  padding: 56px 0;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.detail-row:last-child {
-  border-bottom: none;
+  gap: 64px;
+  padding: 60px 0;
 }
 
 .detail-row--reverse {
@@ -579,10 +592,10 @@ img {
 
 .detail-row__img {
   width: 100%;
-  height: 360px;
-  border-radius: var(--radius-lg);
+  height: 380px;
+  border-radius: var(--radius-md);
   object-fit: cover;
-  border: 1px solid var(--color-border);
+  box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.12);
 }
 
 .detail-row__title {
@@ -590,20 +603,20 @@ img {
   font-weight: 800;
   letter-spacing: -0.02em;
   margin-bottom: 14px;
+  color: var(--t-heading);
 }
 
 .detail-row__desc {
-  font-size: 15px;
-  color: var(--color-text-muted);
+  font-size: 16px;
+  color: var(--t-body);
   line-height: 1.7;
 }
 
 /* ==========================================================================
-   9. LOKASI & PETA
+   10. LOKASI
    ========================================================================== */
 .location {
-  padding: 80px 0;
-  border-top: 1px solid var(--color-border);
+  padding: 84px 0;
 }
 
 .location__wrap {
@@ -617,7 +630,7 @@ img {
 }
 
 .location__address-card {
-  margin: 20px 0 24px;
+  margin: 18px 0 24px;
 }
 
 .location__label {
@@ -625,25 +638,25 @@ img {
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-accent);
+  letter-spacing: 0.08em;
+  color: var(--c-brand);
   margin-bottom: 4px;
 }
 
 .location__address {
   font-style: normal;
   font-size: 16px;
-  color: var(--color-text-muted);
-  line-height: 1.55;
+  color: var(--t-body);
+  line-height: 1.6;
   max-width: 440px;
 }
 
 .location__frame {
   flex: 1;
-  height: 380px;
-  border-radius: var(--radius-lg);
+  height: 390px;
+  border-radius: var(--radius-md);
   overflow: hidden;
-  border: 1px solid var(--color-border);
+  box-shadow: var(--glass-shadow);
 }
 
 .location__frame iframe {
@@ -653,12 +666,14 @@ img {
 }
 
 /* ==========================================================================
-   10. FOOTER
+   11. FOOTER
    ========================================================================== */
 .site-footer {
-  border-top: 1px solid var(--color-border);
-  padding: 64px 0 48px;
-  background-color: var(--color-surface-subtle);
+  padding: 72px 0 48px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid var(--glass-border);
 }
 
 .site-footer__wrap {
@@ -674,8 +689,8 @@ img {
 .site-footer__about {
   margin-top: 14px;
   font-size: 14px;
-  color: var(--color-text-muted);
-  line-height: 1.55;
+  color: var(--t-muted);
+  line-height: 1.6;
 }
 
 .site-footer__nav-grid {
@@ -687,7 +702,7 @@ img {
   font-size: 14px;
   font-weight: 700;
   margin-bottom: 14px;
-  color: var(--color-text-main);
+  color: var(--t-heading);
 }
 
 .footer-col li {
@@ -696,15 +711,15 @@ img {
 
 .footer-col a {
   font-size: 13.5px;
-  color: var(--color-text-muted);
+  color: var(--t-muted);
 }
 
 .footer-col a:hover {
-  color: var(--color-accent);
+  color: var(--c-brand);
 }
 
 /* ==========================================================================
-   11. RESPONSIF (BREAKPOINTS)
+   12. MEDIA QUERIES
    ========================================================================== */
 @media (max-width: 1024px) {
   .programs-grid {
@@ -718,12 +733,8 @@ img {
 
   .about__stats-strip {
     grid-template-columns: repeat(2, 1fr);
-    padding: 16px;
-    gap: 16px;
-  }
-
-  .stat-strip-item:not(:last-child)::after {
-    display: none;
+    padding: 12px;
+    gap: 12px;
   }
 
   .location__wrap,
@@ -745,13 +756,18 @@ img {
 }
 
 @media (max-width: 768px) {
+  .site-header {
+    top: 12px;
+    padding: 0 16px;
+  }
+
   .site-nav {
     display: none;
   }
 
   .hero__title,
   .section-title {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .programs-grid,
