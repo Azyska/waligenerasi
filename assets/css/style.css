@@ -1,35 +1,25 @@
 /* ==========================================================================
-   1. SISTEM DESAIN & VARIABEL WARNA
+   1. SISTEM WARNA & TIPOGRAFI (GOOGLE SANS FLEX)
    ========================================================================== */
 :root {
-  --font-base: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  
-  /* Nuansa Hijau & Aksen Segar */
-  --c-primary: #0f172a;
-  --c-brand: #059669;
-  --c-brand-light: #10b981;
-  --c-brand-soft: rgba(5, 150, 105, 0.1);
-  
-  /* Warna Teks */
-  --t-heading: #0f172a;
-  --t-body: #475569;
-  --t-muted: #64748b;
-  --t-light: #ffffff;
-  
-  /* Permukaan Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.65);
-  --glass-border: rgba(255, 255, 255, 0.8);
-  --glass-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.08);
-  
-  /* Kelengkungan (Radius) */
-  --radius-sm: 10px;
-  --radius-md: 20px;
-  --radius-lg: 28px;
-  --radius-pill: 9999px;
+  --font-family: 'Google Sans Flex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Warna Natural Santri */
+  --c-primary: #1b4332;         /* Hijau daun tua alami */
+  --c-primary-light: #2d6a4f;
+  --c-text-main: #1f2923;       /* Hitam-hijau arang */
+  --c-text-body: #3c4a42;       /* Teks paragraf nyaman dibaca */
+  --c-text-muted: #65756c;
+  --c-border: #dde5e0;          /* Garis abu-sage tipis natural */
+
+  /* Radius Halus Wajar */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
 }
 
 /* ==========================================================================
-   2. RESET & BACKGROUND GRADASI TOTAL (HIDUP & CERAH)
+   2. DASAR & GRADASI BACKGROUND ALAMI
    ========================================================================== */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -39,33 +29,26 @@
 
 html {
   scroll-behavior: smooth;
-  font-family: var(--font-base);
-  color: var(--t-heading);
+  font-family: var(--font-family);
   font-size: 16px;
+  color: var(--c-text-main);
 }
 
 body {
   width: 100%;
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-
-  /* Gradasi Latar Belakang Segar & Alami */
-  background-color: #f7faf8;
-  background-image: 
-    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.15) 0px, transparent 45%),
-    radial-gradient(at 100% 10%, rgba(5, 150, 105, 0.12) 0px, transparent 40%),
-    radial-gradient(at 20% 50%, rgba(52, 211, 153, 0.1) 0px, transparent 50%),
-    radial-gradient(at 90% 70%, rgba(16, 185, 129, 0.14) 0px, transparent 45%),
-    radial-gradient(at 50% 100%, rgba(5, 150, 105, 0.12) 0px, transparent 50%),
-    linear-gradient(180deg, #f9fbf9 0%, #f1f6f2 50%, #f6faf7 100%);
+  
+  /* Gradasi Lembut Natural (Tidak Abu-Abu Kotor, Tidak Neon AI) */
+  background: linear-gradient(180deg, #f7faf8 0%, #edf3ef 50%, #f4f8f5 100%);
   background-attachment: fixed;
+  min-height: 100vh;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: all 0.25s ease;
+  transition: color 0.15s ease, opacity 0.15s ease;
 }
 
 ul {
@@ -80,7 +63,7 @@ img {
 
 .container {
   width: 100%;
-  max-width: 1240px;
+  max-width: 1140px;
   margin: 0 auto;
   padding: 0 24px;
 }
@@ -90,29 +73,32 @@ img {
 }
 
 /* ==========================================================================
-   3. FLOATING GLASSMORPHISM NAVBAR (ROUNDED PILL)
+   3. FIXED NAVBAR (TETAP DI ATAS, TIDAK NYARU DENGAN HERO)
    ========================================================================== */
 .site-header {
-  position: sticky;
-  top: 20px;
-  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 1200px;
-  margin: 16px auto 0 auto;
-  padding: 0 20px;
+  height: 68px;
+  z-index: 1000;
+  
+  /* Latar solid-subtle dengan blur tipis agar teks selalu terbaca kontras */
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--c-border);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
 }
 
 .site-header__wrap {
+  max-width: 1140px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 28px;
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-pill);
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
 }
 
 .brand {
@@ -122,470 +108,347 @@ img {
 }
 
 .brand__logo {
-  width: 36px;
-  height: 36px;
-  background: transparent !important;
-  box-shadow: none !important;
-  border: none !important;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
 }
 
 .brand__name {
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--t-heading);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--c-primary);
+  letter-spacing: -0.01em;
 }
 
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 28px;
 }
 
 .site-nav__link {
   font-size: 14.5px;
-  font-weight: 600;
-  color: var(--t-body);
+  font-weight: 500;
+  color: var(--c-text-body);
 }
 
 .site-nav__link:hover {
-  color: var(--c-brand);
+  color: var(--c-primary);
 }
 
 /* ==========================================================================
-   4. TIPOGRAFI & TOMBOL
-   ========================================================================== */
-.eyebrow {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--c-brand);
-  margin-bottom: 8px;
-}
-
-.section-title {
-  font-size: clamp(30px, 4vw, 38px);
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  line-height: 1.25;
-  color: var(--t-heading);
-}
-
-.section-lead {
-  font-size: 16.5px;
-  color: var(--t-muted);
-  max-width: 700px;
-  margin: 12px auto 0;
-  line-height: 1.6;
-}
-
-.btn-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 14px;
-  margin-top: 32px;
-  flex-wrap: wrap;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 13px 28px;
-  border-radius: var(--radius-pill);
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.btn--primary {
-  background-color: var(--c-primary);
-  color: var(--t-light);
-  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.15);
-}
-
-.btn--primary:hover {
-  background-color: #1e293b;
-  transform: translateY(-2px);
-  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.2);
-}
-
-.btn--secondary {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  color: var(--t-heading);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-}
-
-.btn--secondary:hover {
-  background: #ffffff;
-  transform: translateY(-2px);
-}
-
-/* ==========================================================================
-   5. HERO SECTION (OVERLAY TIPIS)
+   4. HERO SECTION (PAS DI BAWAH NAVBAR FIXED)
    ========================================================================== */
 .hero {
-  padding: 24px 0 36px;
-}
-
-.hero__card {
   position: relative;
-  min-height: 500px;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+  width: 100%;
+  min-height: calc(100vh - 68px);
+  margin-top: 68px; /* Offset pas dengan tinggi navbar fixed */
   display: flex;
   align-items: center;
-  box-shadow: 0 10px 30px -6px rgba(15, 23, 42, 0.1);
+  background-color: #1a2e24;
 }
 
 .hero__image {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  z-index: 1;
 }
 
 .hero__overlay {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  /* Lapisan transparan lembut agar foto terlihat cerah tapi teks terbaca */
   background: linear-gradient(
     90deg, 
-    rgba(14, 26, 20, 0.55) 0%, 
-    rgba(14, 26, 20, 0.25) 50%, 
-    rgba(14, 26, 20, 0.05) 100%
+    rgba(17, 34, 26, 0.88) 0%, 
+    rgba(17, 34, 26, 0.55) 60%, 
+    rgba(17, 34, 26, 0.2) 100%
   );
 }
 
-.hero__content {
+.hero__container {
   position: relative;
-  z-index: 2;
-  padding: 48px 56px;
-  max-width: 660px;
-  color: var(--t-light);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  z-index: 5;
+  padding-top: 48px;
+  padding-bottom: 48px;
 }
 
-.hero__title {
-  font-size: clamp(30px, 4vw, 42px);
-  line-height: 1.18;
-  font-weight: 500;
-  letter-spacing: -0.02em;
+.hero__content {
+  max-width: 620px;
+  color: #ffffff;
+}
+
+.hero__badge {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #74c69d;
   margin-bottom: 12px;
 }
 
-.hero__title strong {
-  font-weight: 800;
+.hero__title {
+  font-size: clamp(32px, 4vw, 44px);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+  color: #ffffff;
 }
 
 .hero__tagline {
-  color: #86efac;
-  font-size: 17px;
-  font-weight: 700;
+  font-size: 18px;
+  font-weight: 600;
+  color: #d8f3dc;
   margin-bottom: 14px;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 .hero__desc {
   font-size: 15.5px;
   line-height: 1.65;
-  color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 28px;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   5. TOMBOL & TIPOGRAFI UMUM
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  border-radius: var(--radius-sm);
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn--primary {
+  background-color: #2d6a4f;
+  color: #ffffff;
+}
+
+.btn--primary:hover {
+  background-color: #1b4332;
+}
+
+.btn--secondary {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn--secondary:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.btn--dark {
+  background-color: var(--c-primary);
+  color: #ffffff;
+}
+
+.btn--dark:hover {
+  background-color: var(--c-primary-light);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--c-primary);
+  margin-bottom: 6px;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--c-text-main);
+  line-height: 1.25;
+}
+
+.section-lead {
+  font-size: 15px;
+  color: var(--c-text-muted);
+  max-width: 600px;
+  margin: 10px auto 0;
 }
 
 /* ==========================================================================
    6. JARINGAN RESMI
    ========================================================================== */
 .network-cta {
-  padding: 72px 0 54px;
+  padding: 56px 0;
+  border-bottom: 1px solid var(--c-border);
+}
+
+.network-cta .btn-row {
+  margin-top: 20px;
 }
 
 /* ==========================================================================
-   7. SECTION TENTANG KAMI (BENTO GRID MODULAR)
+   7. TENTANG KAMI (NATURAL, BERSIH, BEBAS AI SLOP)
    ========================================================================== */
 .about {
-  padding: 84px 0 92px;
+  padding: 72px 0;
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--c-border);
 }
 
 .about__header {
-  margin-bottom: 44px;
-}
-
-.about__hero-row {
-  display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  gap: 24px;
-  align-items: stretch;
   margin-bottom: 24px;
 }
 
-.about__narrative {
-  background: var(--glass-bg);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-md);
-  padding: 38px 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-shadow: var(--glass-shadow);
+.about__body {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: start;
 }
 
-.about__subtitle {
-  font-size: 24px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--t-heading);
-  margin-bottom: 12px;
-}
-
-.about__desc {
-  color: var(--t-body);
+.about__story p {
   font-size: 15.5px;
-  line-height: 1.7;
+  color: var(--c-text-body);
+  line-height: 1.75;
 }
 
-.about__vision-card {
-  background: #0f172a;
-  border-radius: var(--radius-md);
-  padding: 38px 34px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: var(--t-light);
-  box-shadow: var(--glass-shadow);
+.about__story p:not(:last-child) {
+  margin-bottom: 16px;
 }
 
-.vision-tag {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: #34d399;
-}
-
-.vision-quote {
-  font-size: 16px;
-  line-height: 1.65;
-  font-style: italic;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.92);
-  margin-top: 18px;
-}
-
-.about__pillars-grid {
+/* Metrik Sederhana Tanpa Kartu Mengambang Alay */
+.about__metrics {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-bottom: 24px;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 }
 
-.pillar-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-md);
-  padding: 32px 28px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: var(--glass-shadow);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+.metric-item {
+  border-left: 3px solid var(--c-primary);
+  padding: 12px 0 12px 16px;
+  background: transparent;
 }
 
-.pillar-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
-}
-
-.pillar-card__badge {
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--c-brand);
-  font-feature-settings: "tnum";
-  margin-bottom: 8px;
-  line-height: 1;
-}
-
-.pillar-card__title {
-  font-size: 20px;
+.metric-item__num {
+  display: block;
+  font-size: 26px;
   font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--t-heading);
-  margin-bottom: 8px;
-}
-
-.pillar-card__desc {
-  font-size: 14px;
-  color: var(--t-body);
-  line-height: 1.6;
-}
-
-.about__stats-strip {
-  background: var(--glass-bg);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-md);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding: 12px 0;
-  box-shadow: var(--glass-shadow);
-}
-
-.stat-strip-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 24px 20px;
-}
-
-.stat-strip-item__val {
-  font-size: 34px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
   color: var(--c-primary);
   line-height: 1.1;
-  font-feature-settings: "tnum";
+  margin-bottom: 4px;
 }
 
-.stat-strip-item__lbl {
+.metric-item__txt {
   font-size: 13.5px;
-  font-weight: 600;
-  color: var(--t-muted);
-  margin-top: 6px;
+  font-weight: 500;
+  color: var(--c-text-muted);
 }
 
 /* ==========================================================================
-   8. DAFTAR UNIT PENDIDIKAN (FOTO SEJAJAR & ROUNDED)
+   8. DAFTAR UNIT PENDIDIKAN (KARTU SIMETRIS & SEJAJAR)
    ========================================================================== */
 .programs-overview {
-  padding: 92px 0 104px;
+  padding: 72px 0;
 }
 
 .section-head {
-  margin-bottom: 46px;
+  margin-bottom: 36px;
 }
 
 .programs-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
-  align-items: stretch;
+  gap: 20px;
 }
 
 .program-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-md);
-  padding: 28px 22px 22px;
+  background: #ffffff;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  box-shadow: var(--glass-shadow);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.program-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 42px -10px rgba(15, 23, 42, 0.12);
 }
 
 .program-card__body {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
   flex-grow: 1;
 }
 
 .program-card__title {
-  font-size: 18px;
+  font-size: 16.5px;
   font-weight: 700;
   line-height: 1.35;
-  color: var(--t-heading);
+  color: var(--c-text-main);
+  margin-bottom: 8px;
 }
 
 .program-card__text {
   font-size: 13.5px;
-  color: var(--t-body);
+  color: var(--c-text-body);
   line-height: 1.55;
 }
 
 .program-card__media {
   margin-top: auto;
-  padding-top: 14px;
-  display: flex;
-  justify-content: center;
+  padding: 16px 0 12px;
 }
 
 .program-card__thumb {
   width: 100%;
-  height: 180px;
-  border-radius: 14px;
+  height: 155px;
+  border-radius: var(--radius-sm);
   object-fit: cover;
-  transition: transform 0.25s ease;
-}
-
-.program-card:hover .program-card__thumb {
-  transform: scale(1.02);
+  border: 1px solid var(--c-border);
 }
 
 .program-card__footer {
-  padding-top: 6px;
+  border-top: 1px solid #f0f4f1;
+  padding-top: 12px;
 }
 
 .inline-link {
   font-size: 13px;
-  font-weight: 700;
-  color: var(--c-brand);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: gap 0.2s ease;
-}
-
-.arrow-icon {
-  width: 14px;
-  height: 10px;
-  opacity: 0.85;
-  transition: transform 0.2s ease;
+  font-weight: 600;
+  color: var(--c-primary);
 }
 
 .inline-link:hover {
-  gap: 12px;
-  color: #047857;
-}
-
-.inline-link:hover .arrow-icon {
-  transform: translateX(4px);
+  color: var(--c-primary-light);
 }
 
 /* ==========================================================================
-   9. DETAIL PROGRAM (Z-PATTERN)
+   9. DETAIL PROGRAM (Z-PATTERN BERSIH)
    ========================================================================== */
 .programs-detail {
-  padding: 36px 0 80px;
+  padding: 24px 0 72px;
 }
 
 .detail-row {
   display: flex;
   align-items: center;
-  gap: 64px;
-  padding: 60px 0;
+  gap: 48px;
+  padding: 44px 0;
+  border-top: 1px solid var(--c-border);
 }
 
 .detail-row--reverse {
@@ -599,23 +462,23 @@ img {
 
 .detail-row__img {
   width: 100%;
-  height: 380px;
-  border-radius: var(--radius-md);
+  height: 320px;
+  border-radius: var(--radius-sm);
   object-fit: cover;
-  box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.12);
+  border: 1px solid var(--c-border);
 }
 
 .detail-row__title {
-  font-size: 32px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  margin-bottom: 14px;
-  color: var(--t-heading);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 12px;
+  color: var(--c-text-main);
 }
 
 .detail-row__desc {
-  font-size: 16px;
-  color: var(--t-body);
+  font-size: 15px;
+  color: var(--c-text-body);
   line-height: 1.7;
 }
 
@@ -623,13 +486,15 @@ img {
    10. LOKASI
    ========================================================================== */
 .location {
-  padding: 84px 0;
+  padding: 72px 0;
+  background-color: #ffffff;
+  border-top: 1px solid var(--c-border);
 }
 
 .location__wrap {
   display: flex;
   align-items: center;
-  gap: 56px;
+  gap: 48px;
 }
 
 .location__info {
@@ -637,33 +502,21 @@ img {
 }
 
 .location__address-card {
-  margin: 18px 0 24px;
-}
-
-.location__label {
-  display: block;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--c-brand);
-  margin-bottom: 4px;
+  margin: 16px 0 24px;
 }
 
 .location__address {
-  font-style: normal;
-  font-size: 16px;
-  color: var(--t-body);
+  font-size: 15px;
+  color: var(--c-text-body);
   line-height: 1.6;
-  max-width: 440px;
 }
 
 .location__frame {
   flex: 1;
-  height: 390px;
-  border-radius: var(--radius-md);
+  height: 340px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
-  box-shadow: var(--glass-shadow);
+  border: 1px solid var(--c-border);
 }
 
 .location__frame iframe {
@@ -676,79 +529,70 @@ img {
    11. FOOTER
    ========================================================================== */
 .site-footer {
-  padding: 72px 0 48px;
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-top: 1px solid var(--glass-border);
+  padding: 56px 0 40px;
+  background-color: #edf3ef;
+  border-top: 1px solid var(--c-border);
 }
 
 .site-footer__wrap {
   display: flex;
   justify-content: space-between;
-  gap: 56px;
+  gap: 48px;
 }
 
 .site-footer__main {
-  max-width: 340px;
+  max-width: 320px;
 }
 
 .site-footer__about {
-  margin-top: 14px;
-  font-size: 14px;
-  color: var(--t-muted);
-  line-height: 1.6;
+  margin-top: 12px;
+  font-size: 13.5px;
+  color: var(--c-text-muted);
 }
 
 .site-footer__nav-grid {
   display: flex;
-  gap: 56px;
+  gap: 48px;
 }
 
 .footer-col__title {
   font-size: 14px;
   font-weight: 700;
-  margin-bottom: 14px;
-  color: var(--t-heading);
+  color: var(--c-text-main);
+  margin-bottom: 12px;
 }
 
 .footer-col li {
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .footer-col a {
   font-size: 13.5px;
-  color: var(--t-muted);
+  color: var(--c-text-body);
 }
 
 .footer-col a:hover {
-  color: var(--c-brand);
+  color: var(--c-primary);
 }
 
 /* ==========================================================================
-   12. MEDIA QUERIES (RESPONSIF MOBILE & TABLET)
+   12. RESPONSIF
    ========================================================================== */
-@media (max-width: 1024px) {
+@media (max-width: 992px) {
   .programs-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .about__hero-row,
-  .about__pillars-grid {
+  .about__body {
     grid-template-columns: 1fr;
-  }
-
-  .about__stats-strip {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 12px;
-    gap: 12px;
+    gap: 32px;
   }
 
   .location__wrap,
   .detail-row,
   .detail-row--reverse {
     flex-direction: column;
-    gap: 32px;
+    gap: 28px;
   }
 
   .detail-row__media,
@@ -758,33 +602,22 @@ img {
   }
 
   .location__frame {
-    height: 320px;
+    height: 300px;
   }
 }
 
 @media (max-width: 768px) {
-  .site-header {
-    top: 12px;
-    padding: 0 16px;
-  }
-
   .site-nav {
     display: none;
   }
 
-  .hero__title,
-  .section-title {
-    font-size: 26px;
-  }
-
-  .programs-grid,
-  .about__stats-strip {
+  .programs-grid {
     grid-template-columns: 1fr;
   }
 
   .site-footer__wrap {
     flex-direction: column;
-    gap: 36px;
+    gap: 32px;
   }
 
   .site-footer__nav-grid {
