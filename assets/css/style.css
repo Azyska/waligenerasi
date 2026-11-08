@@ -225,15 +225,19 @@ img {
   margin-bottom: 12px;
 }
 
-/* Judul otomatis menyesuaikan layar (tidak kekecilan di HP) */
 .hero__title {
   font-size: clamp(26px, 5.5vw, 44px);
   line-height: 1.25;
-  font-weight: 700;
+  font-weight: 400; /* Dibuat reguler/tidak tebal */
   letter-spacing: -0.02em;
   margin-bottom: 12px;
   color: #ffffff;
   text-wrap: balance;
+}
+
+/* Hanya teks di dalam span yang tebal */
+.hero__title span {
+  font-weight: 700;
 }
 
 .hero__tagline {
