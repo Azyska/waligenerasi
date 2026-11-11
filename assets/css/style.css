@@ -266,74 +266,73 @@ img {
 }
 
 /* ==========================================================================
-   5. TOMBOL & TIPOGRAFI
+   5. TOMBOL & TIPOGRAFI (BALANCED GLASSMORPHISM)
    ========================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 13px 26px;
+  padding: 12px 26px;
   border-radius: var(--radius-pill);
   font-size: 14.5px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
+  
+  /* Efek blur kaca seimbang (selaras dengan navbar) */
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
 }
 
+/* Tombol Utama: Nuansa Kaca Hijau Emerald Segar */
 .btn--primary {
-  background-color: var(--c-accent);
-  color: #0f271d;
+  background: rgba(82, 183, 136, 0.38);
+  color: #ffffff;
+  border: 1px solid rgba(134, 239, 172, 0.55);
+  box-shadow: 
+    0 6px 20px rgba(10, 35, 20, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
 .btn--primary:hover {
-  background-color: #40916c;
-  color: #ffffff;
+  background: rgba(82, 183, 136, 0.55);
+  border-color: rgba(134, 239, 172, 0.85);
+  box-shadow: 
+    0 8px 24px rgba(10, 35, 20, 0.25),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
 }
 
+/* Tombol Sekunder: Nuansa Kaca Netral Seimbang (Identik Navbar) */
 .btn--secondary {
-  background-color: rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.22);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 
+    0 6px 12px rgba(10, 30, 20, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 
 .btn--secondary:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 
+    0 8px 24px rgba(10, 30, 20, 0.18),
+    inset 0 1px 1px rgba(255, 255, 255, 0.7);
+  transform: translateY(-2px);
 }
 
+/* Tombol Dark (untuk section jaringan resmi & luar hero tetap solid kontras) */
 .btn--dark {
   background-color: var(--c-primary);
   color: #ffffff;
+  border: 1px solid transparent;
 }
 
 .btn--dark:hover {
   background-color: var(--c-primary-light);
-}
-
-.eyebrow {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--c-primary);
-  margin-bottom: 6px;
-}
-
-.section-title {
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: -0.015em;
-  color: var(--c-text-main);
-  line-height: 1.3;
-}
-
-.section-lead {
-  font-size: 15.5px;
-  color: var(--c-text-muted);
-  max-width: 620px;
-  margin: 10px auto 0;
 }
 
 /* ==========================================================================
