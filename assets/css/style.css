@@ -297,7 +297,7 @@ p {
   line-height: 1.2;
   font-weight: 400; /* Kalimat pembuka dibuat reguler */
   letter-spacing: -0.025em;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
   color: #ffffff;
   text-wrap: balance;
 }
@@ -306,15 +306,6 @@ p {
 .hero__title span {
   font-weight: 700;
   display: inline;
-}
-
-/* Tagline: warna hijau muda tegas tanpa terkesan norak */
-.hero__tagline {
-  font-size: clamp(1rem, 0.9rem + 0.62vw, 1.1875rem);
-  font-weight: 500;
-  letter-spacing: 0.01em;
-  color: #a7f3d0;
-  margin-bottom: 16px;
 }
 
 /* Deskripsi: lebar dibatasi (max-width) agar baris teks tidak kepanjangan di layar lebar */
