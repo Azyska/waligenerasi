@@ -170,13 +170,13 @@ p {
   backdrop-filter: blur(16px) saturate(140%);
   -webkit-backdrop-filter: blur(16px) saturate(140%);
   
-  /* Garis tepi kaca halus */
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  /* Garis tepi kaca yang lebih tegas di atas section terang */
+  border: 1px solid rgba(20, 34, 26, 0.12);
   border-radius: var(--radius-pill);
   
-  /* Bayangan lembut */
+  /* Bayangan lebih dalam agar kapsul tetap terlihat */
   box-shadow: 
-    0 8px 24px rgba(10, 30, 20, 0.08),
+    0 8px 28px rgba(10, 30, 20, 0.12),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
@@ -687,7 +687,7 @@ p {
    11. FOOTER & MEDIA SOSIAL
    ========================================================================== */
 .site-footer {
-  padding: 64px 0 40px;
+  padding: 48px 0 32px;
   background-color: #edf2ee;
 }
 
@@ -695,6 +695,7 @@ p {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 48px;
 }
 
@@ -736,8 +737,9 @@ p {
 }
 
 .site-footer__nav-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr));
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
   gap: 48px;
 }
 
@@ -788,7 +790,7 @@ p {
   }
 }
 
-@media (max-width: 48em) {
+@media (max-width: 768px) {
   .hero {
     min-height: auto;
     padding: 110px 0 50px;
@@ -843,5 +845,20 @@ p {
   .about__metrics {
     grid-template-columns: 1fr 1fr;
     padding: 18px;
+  }
+
+  .site-footer {
+    padding: 40px 0 28px;
+  }
+
+  .site-footer__wrap {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+  }
+
+  .site-footer__nav-grid {
+    flex-direction: column;
+    gap: 24px;
   }
 }
