@@ -857,8 +857,10 @@ p {
     gap: 32px;
   }
 
-  .site-footer__nav-grid {
-    flex-direction: column;
-    gap: 24px;
+.site-footer__nav-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 16px;
+    width: 100%;
   }
 }
