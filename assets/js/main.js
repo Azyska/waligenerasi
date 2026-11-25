@@ -6,7 +6,6 @@
   'use strict';
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var isMobile = window.matchMedia('(max-width: 768px)').matches;
 
   // Jika pengguna memilih mengurangi animasi, biarkan halaman tampil statis.
   // Jika GSAP/ScrollTrigger gagal dimuat, jangan sembunyikan elemen apa pun.
@@ -15,6 +14,41 @@
 
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.config({ ignoreMobileResize: true });
+
+  /* ----------------------------------------------------------------------
+     0. SEMBUNYIKAN ELEMEN SEBELUM ANIMASI DIBUAT (ANTI-FOUC)
+     Semua target disetel tersembunyi lebih dulu, baru ScrollTrigger dibuat.
+     Dengan begitu tidak ada elemen yang sempat terlihat lalu berkedip.
+     ---------------------------------------------------------------------- */
+  var heroItems = gsap.utils.toArray('.hero__title, .hero__desc, .hero .btn');
+
+  if (heroItems.length) {
+    gsap.set(heroItems, { autoAlpha: 0, y: 24 });
+  }
+
+  var revealSelector = [
+    '.network-cta .section-title',
+    '.network-cta .section-lead',
+    '.network-cta .btn-row',
+    '.about__header .section-title',
+    '.about__story p',
+    '.metric-item',
+    '.programs-overview .section-head',
+    '.program-card',
+    '.detail-row',
+    '.location .section-title',
+    '.location__address-card',
+    '.location__info > .btn',
+    '.location__frame',
+    '.site-footer__main',
+    '.site-footer__nav-grid'
+  ].join(',');
+
+  var revealElements = gsap.utils.toArray(revealSelector);
+
+  if (revealElements.length) {
+    gsap.set(revealElements, { autoAlpha: 0, y: 28 });
+  }
 
   /* ----------------------------------------------------------------------
      1. SMOOTH SCROLLING (LENIS) + SINKRONISASI SCROLLTRIGGER
@@ -91,65 +125,47 @@
   /* ----------------------------------------------------------------------
      3. ENTRANCE ANIMATION — HERO
      ---------------------------------------------------------------------- */
-  var heroItems = gsap.utils.toArray('.hero__title, .hero__desc, .hero .btn');
-
   if (heroItems.length) {
-    gsap.from(heroItems, {
-      autoAlpha: 0,
-      y: 24,
+    gsap.to(heroItems, {
+      autoAlpha: 1,
+      y: 0,
       duration: 0.8,
-      stagger: 0.15,
+      stagger: 0.14,
       ease: 'power2.out',
       clearProps: 'transform,opacity,visibility'
     });
   }
 
   /* ----------------------------------------------------------------------
-     4. SCROLL REVEAL — JUDUL SECTION, KARTU, & KONTEN DI BAWAH HERO
+     4. SCROLL REVEAL — JUDUL SECTION, KARTU, & FOOTER
+     gsap.to() dipakai (bukan gsap.from()) agar nilai awal tidak dihitung
+     ulang saat trigger aktif, sehingga tidak menimbulkan flash.
      ---------------------------------------------------------------------- */
-  var revealSelector = [
-    '.network-cta .section-title',
-    '.network-cta .section-lead',
-    '.network-cta .btn-row',
-    '.about__header .section-title',
-    '.about__story p',
-    '.metric-item',
-    '.programs-overview .section-head',
-    '.program-card',
-    '.detail-row',
-    '.location .section-title',
-    '.location__address-card',
-    '.location__info > .btn',
-    '.location__frame'
-  ].join(',');
-
-  ScrollTrigger.batch(revealSelector, {
-    start: 'top 85%',
-    once: true,
-    interval: 0.12,
-    batchMax: isMobile ? 3 : 6,
-    onEnter: function (batch) {
-      gsap.fromTo(
-        batch,
-        {
-          y: isMobile ? 20 : 28,
-          autoAlpha: 0
-        },
-        {
-          y: 0,
-          autoAlpha: 1,
-          duration: isMobile ? 0.55 : 0.7,
-          stagger: isMobile ? 0.06 : 0.09,
-          ease: 'power2.out',
-          overwrite: true,
-          clearProps: 'transform,opacity,visibility'
-        }
-      );
-    }
+  revealElements.forEach(function (el) {
+    gsap.to(el, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.75,
+      ease: 'power2.out',
+      clearProps: 'transform,opacity,visibility',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 92%',
+        once: true
+      }
+    });
   });
 
-  // Segarkan posisi trigger setelah gambar/font selesai dimuat.
+  /* ----------------------------------------------------------------------
+     5. REFRESH SETELAH HALAMAN & FONT SELESAI DIMUAT
+     ---------------------------------------------------------------------- */
   window.addEventListener('load', function () {
     ScrollTrigger.refresh();
-  }, { once: true });
+  });
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () {
+      ScrollTrigger.refresh();
+    });
+  }
 })();
