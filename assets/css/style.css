@@ -600,8 +600,8 @@ html.lenis,
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  max-width: none;
+  object-fit: fill;
   border-radius: 24px;
 }
 
