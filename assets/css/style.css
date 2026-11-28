@@ -532,42 +532,105 @@ html.lenis,
 }
 
 /* ==========================================================================
-   8. CARD SECTION
+   8. CARD SECTION (ZIG-ZAG PINNED CARDS)
    ========================================================================== */
 .programs-overview {
-  padding: 80px 0;
+  padding: 96px 0;
+  overflow-x: clip;
 }
 
 .section-head {
-  margin-bottom: 40px;
+  margin-bottom: 56px;
 }
 
 .programs-grid {
+  position: relative;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15.5rem), 1fr));
-  gap: 24px;
-  align-items: stretch;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 36px 48px;
+  max-width: 920px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.programs-grid::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(18, 55, 42, 0.22) 0,
+    rgba(18, 55, 42, 0.22) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
 .program-card {
-  background: var(--c-surface);
-  border-radius: 38px;
-  padding: 14px 14px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  box-shadow: 0 4px 18px rgba(18, 55, 42, 0.05);
-  transition: translate 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 28px 18px 18px;
+  box-shadow: 0 18px 40px rgba(18, 55, 42, 0.08), 0 2px 8px rgba(18, 55, 42, 0.04);
+  border: 1px solid rgba(18, 55, 42, 0.06);
+  transition: rotate 0.3s ease, translate 0.3s ease, box-shadow 0.3s ease;
+}
+
+.program-card:nth-child(odd) {
+  rotate: -3deg;
+  margin-top: 0;
+}
+
+.program-card:nth-child(even) {
+  rotate: 3deg;
+  margin-top: 56px;
 }
 
 .program-card:hover {
-  translate: 0 -4px;
-  box-shadow: 0 10px 28px rgba(18, 55, 42, 0.09);
+  rotate: 0deg;
+  translate: 0 -6px;
+  box-shadow: 0 24px 50px rgba(18, 55, 42, 0.13);
+  z-index: 2;
 }
 
-.program-card__body {
-  flex-grow: 1;
-  padding: 6px 6px 0;
+.program-card__pin {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #2f6b55, #12372A);
+  box-shadow: 0 3px 6px rgba(18, 55, 42, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.program-card__inner {
+  background: #f6f8f7;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.program-card__num {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--c-primary);
+  background: rgba(18, 55, 42, 0.08);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+  align-self: flex-start;
 }
 
 .program-card__title {
@@ -587,12 +650,11 @@ html.lenis,
 .program-card__media {
   position: relative;
   width: 100%;
-  height: 190px;
-  margin: auto 0 12px;
-  margin-top: 16px;
-  border-radius: 24px;
+  height: 185px;
+  margin: 16px 0 14px;
+  border-radius: 18px;
   overflow: hidden;
-  background-color: #e9ecef;
+  background-color: #e4ebe7;
 }
 
 .program-card__thumb {
@@ -601,12 +663,12 @@ html.lenis,
   width: 100%;
   height: 100%;
   max-width: none;
-  object-fit: fill;
-  border-radius: 24px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .program-card__footer {
-  padding: 4px 6px 0;
+  padding-top: 4px;
 }
 
 .inline-link {
@@ -617,6 +679,28 @@ html.lenis,
 
 .inline-link:hover {
   color: var(--c-primary);
+}
+
+@media (max-width: 768px) {
+  .programs-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-inline: 8px;
+  }
+
+  .programs-grid::before {
+    left: 24px;
+  }
+
+  .program-card:nth-child(odd) {
+    rotate: -1.5deg;
+    margin-top: 0;
+  }
+
+  .program-card:nth-child(even) {
+    rotate: 1.5deg;
+    margin-top: 0;
+  }
 }
 
 /* ==========================================================================
