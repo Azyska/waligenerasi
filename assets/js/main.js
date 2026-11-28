@@ -68,7 +68,6 @@ import { animate, hover, press } from "https://cdn.jsdelivr.net/npm/motion@12/+e
     '.about__story p',
     '.metric-item',
     '.programs-overview .section-head',
-    '.program-card',
     '.detail-row',
     '.location .section-title',
     '.location__address-card',
