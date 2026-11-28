@@ -1,3 +1,5 @@
+import { animate, hover, press } from "https://cdn.jsdelivr.net/npm/motion@12/+esm";
+
 /* ==========================================================================
    WaliGenerasi — Smooth Scroll & Animasi
    Lenis + GSAP + ScrollTrigger
@@ -10,6 +12,38 @@
   // Jika pengguna memilih mengurangi animasi, biarkan halaman tampil statis.
   // Jika GSAP/ScrollTrigger gagal dimuat, jangan sembunyikan elemen apa pun.
   if (reduceMotion) return;
+
+  /* ----------------------------------------------------------------------
+     MICRO-INTERACTIONS DENGAN MOTION (SPRING PHYSICS)
+     ---------------------------------------------------------------------- */
+  document.querySelectorAll(".btn").forEach(function (btn) {
+    hover(btn, function () {
+      animate(btn, { scale: 1.03 }, { type: "spring", stiffness: 400, damping: 22 });
+      return function () {
+        animate(btn, { scale: 1 }, { type: "spring", stiffness: 400, damping: 25 });
+      };
+    });
+
+    press(btn, function () {
+      animate(btn, { scale: 0.96 }, { type: "spring", stiffness: 500, damping: 25 });
+      return function () {
+        animate(btn, { scale: 1.03 }, { type: "spring", stiffness: 400, damping: 22 });
+      };
+    });
+  });
+
+  document.querySelectorAll(".program-card").forEach(function (card) {
+    var pin = card.querySelector(".program-card__pin");
+    if (!pin) return;
+
+    hover(card, function () {
+      animate(pin, { scale: 1.35 }, { type: "spring", stiffness: 450, damping: 18 });
+      return function () {
+        animate(pin, { scale: 1 }, { type: "spring", stiffness: 400, damping: 22 });
+      };
+    });
+  });
+
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
   gsap.registerPlugin(ScrollTrigger);
